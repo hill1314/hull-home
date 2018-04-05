@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hull.mapper.MessageInfoMapper">
+	<!--查询字段-->
+	<sql id="columns">
+	    a.`id`,
+	    a.`send_man`,
+	    a.`receive_man`,
+	    a.`send_time`,
+	    a.`status`,
+	    a.`content`,
+	    a.`update_time`
+	</sql>
+	
+	<!--查询结果集-->
+	<resultMap id="beanMap" type="com.hull.entity.MessageInfo">
+	    <result property="id" column="id"/>
+	    <result property="sendMan" column="send_man"/>
+	    <result property="receiveMan" column="receive_man"/>
+	    <result property="sendTime" column="send_time"/>
+	    <result property="status" column="status"/>
+	    <result property="content" column="content"/>
+	    <result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	<!--根据主键获取实体-->
+	<select id="get" resultMap="beanMap">
+	  SELECT
+		<include refid="columns"/>
+	  FROM
+		message_info a
+	  WHERE
+		id = #{id}
+	</select>
+
+	<select id="select" resultMap="beanMap">
+		SELECT
+		<include refid="columns"/>
+		FROM
+		message_info a
+		WHERE  1=1
+		<if test="sendMan != null">
+			AND `send_man` = #{sendMan}
+		</if>
+		<if test="receiveMan != null">
+			AND `receive_man` = #{receiveMan}
+		</if>
+		<if test="status != null">
+			AND `status` = #{status}
+		</if>
+	</select>
+    
+	<!-- 新增记录 -->
+	<insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="com.hull.entity.MessageInfo">
+	  INSERT INTO message_info 
+	    (
+	    `send_man`,
+	    `receive_man`,
+	    `send_time`,
+	    `status`,
+	    `content`,
+	    `update_time`		
+	    )
+	   VALUES 
+	   (
+	    #{sendMan},
+	    #{receiveMan},
+	    #{sendTime},
+	    #{status},
+	    #{content},
+	    #{updateTime}		
+	   )
+	</insert>
+    
+    
+    <!--更新实体信息-->
+    <update id="update" parameterType="com.hull.entity.MessageInfo">
+      UPDATE 
+      	message_info 
+      SET 
+        `send_man` = #{sendMan},
+        `receive_man` = #{receiveMan},
+        `send_time` = #{sendTime},
+        `status` = #{status},
+        `content` = #{content},
+        `update_time` = #{updateTime}      
+      WHERE 
+    </update>
+    
+    <!--更新实体信息，null值字段不更新-->
+    <update id="updateIgnoreNull" parameterType="com.hull.entity.MessageInfo">
+        UPDATE message_info 
+        <set>
+          <if test="sendMan != null">
+           `send_man` = #{sendMan},
+      	  </if>
+          <if test="receiveMan != null">
+           `receive_man` = #{receiveMan},
+      	  </if>
+          <if test="sendTime != null">
+           `send_time` = #{sendTime},
+      	  </if>
+          <if test="status != null">
+           `status` = #{status},
+      	  </if>
+          <if test="content != null">
+           `content` = #{content},
+      	  </if>
+        </set>
+        WHERE  
+    </update>
+    
+    <!--根据主键删除实体-->
+    <delete id="delete">
+      DELETE FROM message_info WHERE 
+    </delete>
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hull.mapper.MeetingUnitMapper">
+	<!--查询字段-->
+	<sql id="columns">
+	    a.`id`,
+	    a.`time_unit`
+	</sql>
+	
+	<!--查询结果集-->
+	<resultMap id="beanMap" type="com.hull.entity.MeetingUnit">
+	    <result property="id" column="id"/>
+	    <result property="timeUnit" column="time_unit"/>
+	</resultMap>
+	
+	<!--根据主键获取实体-->
+	<select id="get" resultMap="beanMap">
+	  SELECT
+		<include refid="columns"/>
+	  FROM
+		meeting_unit a
+	  WHERE 
+	     id = #{id}
+	</select>
+    
+	<!-- 新增记录 -->
+	<insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="com.hull.entity.MeetingUnit">
+	  INSERT INTO meeting_unit 
+	    (
+	    `time_unit`		
+	    )
+	   VALUES 
+	   (
+	    #{timeUnit}		
+	   )
+	</insert>
+    
+    
+    <!--更新实体信息-->
+    <update id="update" parameterType="com.hull.entity.MeetingUnit">
+      UPDATE 
+      	meeting_unit 
+      SET 
+        `time_unit` = #{timeUnit}      
+      WHERE  id = #{id}
+    </update>
+    
+    <!--更新实体信息，null值字段不更新-->
+    <update id="updateIgnoreNull" parameterType="com.hull.entity.MeetingUnit">
+        UPDATE meeting_unit 
+        <set>
+          <if test="timeUnit != null">
+           `time_unit` = #{timeUnit},
+      	  </if>
+        </set>
+        WHERE   id = #{id}
+    </update>
+    
+    <!--根据主键删除实体-->
+    <delete id="delete">
+      DELETE FROM meeting_unit WHERE  id = #{id}
+    </delete>
+</mapper>
