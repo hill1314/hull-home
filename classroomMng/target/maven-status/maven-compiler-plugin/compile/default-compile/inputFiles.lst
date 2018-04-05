@@ -1,4 +1,3 @@
-/Users/hill/Documents/github/hull-home/classroomMng/src/main/java/com/hull/dto/StaffDto.java
 /Users/hill/Documents/github/hull-home/classroomMng/src/main/java/com/hull/entity/TeamInfo.java
 /Users/hill/Documents/github/hull-home/classroomMng/src/main/java/com/hull/service/OrderService.java
 /Users/hill/Documents/github/hull-home/classroomMng/src/main/java/com/hull/controller/LoginController.java
@@ -6,6 +5,7 @@
 /Users/hill/Documents/github/hull-home/classroomMng/src/main/java/com/hull/entity/StaffInfo.java
 /Users/hill/Documents/github/hull-home/classroomMng/src/main/java/com/hull/mapper/ClassInfoMapper.java
 /Users/hill/Documents/github/hull-home/classroomMng/src/main/java/com/hull/common/IdEntity.java
+/Users/hill/Documents/github/hull-home/classroomMng/src/main/java/com/hull/dto/LoginDto.java
 /Users/hill/Documents/github/hull-home/classroomMng/src/main/java/com/hull/mapper/TeamInfoMapper.java
 /Users/hill/Documents/github/hull-home/classroomMng/src/main/java/com/hull/entity/ClassOrderInfo.java
 /Users/hill/Documents/github/hull-home/classroomMng/src/main/java/com/hull/entity/Role.java

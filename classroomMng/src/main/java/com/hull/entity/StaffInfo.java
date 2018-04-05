@@ -21,6 +21,11 @@ public class StaffInfo extends IdEntity {
   **/
   private String email;
   /**
+   * 手机号
+   */
+  private String mobile;
+
+  /**
   班级ID
   **/
   private Integer teamId;
@@ -52,7 +57,15 @@ public class StaffInfo extends IdEntity {
   public void setEmail(String email) {
     this.email = email;
   }
-	
+
+  public String getMobile() {
+    return mobile;
+  }
+
+  public void setMobile(String mobile) {
+    this.mobile = mobile;
+  }
+
   public Integer getTeamId() {
   	return teamId;
   }

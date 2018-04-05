@@ -7,6 +7,7 @@
 	    a.`name`,
 	    a.`password`,
 	    a.`email`,
+	    a.`mobile`,
 	    a.`team_id`,
 	    a.`role_id`
 	</sql>
@@ -17,6 +18,7 @@
 	    <result property="name" column="name"/>
 	    <result property="password" column="password"/>
 	    <result property="email" column="email"/>
+	    <result property="mobile" column="mobile"/>
 	    <result property="teamId" column="team_id"/>
 	    <result property="roleId" column="role_id"/>
 	</resultMap>
@@ -37,6 +39,9 @@
 		FROM
 		staff_info a
 		WHERE  1=1
+		<if test="id != null">
+			AND `id` = #{id}
+		</if>
 		<if test="name != null">
 			AND `name` = #{name}
 		</if>
@@ -45,6 +50,9 @@
 		</if>
 		<if test="email != null">
 			AND `email` = #{email}
+		</if>
+		<if test="mobile != null">
+			AND `mobile` = #{mobile}
 		</if>
 		<if test="teamId != null">
 			AND `team_id` = #{teamId}
@@ -61,6 +69,7 @@
 	    `name`,
 	    `password`,
 	    `email`,
+	    `mobile`,
 	    `team_id`,
 	    `role_id`		
 	    )
@@ -69,6 +78,7 @@
 	    #{name},
 	    #{password},
 	    #{email},
+	    #{mobile},
 	    #{teamId},
 	    #{roleId}		
 	   )
@@ -86,6 +96,9 @@
       	  </if>
           <if test="email != null">
            `email` = #{email},
+      	  </if>
+          <if test="mobile != null">
+           `mobile` = #{mobile},
       	  </if>
           <if test="teamId != null">
            `team_id` = #{teamId},

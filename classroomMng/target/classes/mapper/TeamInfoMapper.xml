@@ -31,6 +31,9 @@
 		FROM
 		team_info a
 		WHERE  1=1
+		<if test="id != null">
+			AND `id` = #{id}
+		</if>
 		<if test="teamName != null">
 			AND `team_name` = #{teamName}
 		</if>

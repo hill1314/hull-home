@@ -48,6 +48,9 @@ public class OrderController {
     @RequestMapping("/approveOrder/{orderId}/{status}")
     public RespDto<Map<String,Object>> approve(@PathVariable Integer orderId,
                                                @PathVariable String status){
+        if(orderId==null || status==null){
+            return RespDto.error("参数错误");
+        }
         int n = orderService.updateStatus(orderId,status);
         if(n==0){
             return RespDto.error("审批失败");
@@ -62,6 +65,9 @@ public class OrderController {
      */
     @RequestMapping("/deleteOrder/{orderId}")
     public RespDto<Map<String,String>> delete(@PathVariable Integer orderId){
+        if(orderId==null){
+            return RespDto.error("参数为空");
+        }
         int n = orderService.deleteById(orderId);
         if(n==0){
             return RespDto.error("删除失败");
