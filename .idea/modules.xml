@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/classroomMng/classroomMng.iml" filepath="$PROJECT_DIR$/classroomMng/classroomMng.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/hull-home.iml" filepath="$PROJECT_DIR$/.idea/hull-home.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-base/spring-boot-base.iml" filepath="$PROJECT_DIR$/spring-boot-base/spring-boot-base.iml" />
     </modules>
   </component>
 </project>

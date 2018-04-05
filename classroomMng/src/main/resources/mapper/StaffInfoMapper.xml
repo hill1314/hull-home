@@ -37,6 +37,9 @@
 		FROM
 		staff_info a
 		WHERE  1=1
+		<if test="id != null">
+			AND `id` = #{id}
+		</if>
 		<if test="name != null">
 			AND `name` = #{name}
 		</if>

@@ -15,9 +15,18 @@ public class ClassOrderInfo extends IdEntity {
   **/
   private Integer classId;
   /**
+   * 会议主题
+   */
+  private String meetingTopic;
+
+  /**
+   会议时间段
+   **/
+  private Integer meetingTimeId;
+  /**
   预约人
   **/
-  private Integer orderStaff;
+  private Integer orderStaffId;
   /**
   参会团队ID
   **/
@@ -26,27 +35,31 @@ public class ClassOrderInfo extends IdEntity {
   状态  0-已申请 1-审批通过 2-审批未通过
   **/
   private String status;
-  /**
-  会议时间段
-  **/
-  private String meetingTime;
   private Date createTime;
   private Date updateTime;
 
   public Integer getClassId() {
   	return classId;
   }
-	
+
+  public String getMeetingTopic() {
+    return meetingTopic;
+  }
+
+  public void setMeetingTopic(String meetingTopic) {
+    this.meetingTopic = meetingTopic;
+  }
+
   public void setClassId(Integer classId) {
     this.classId = classId;
   }
 	
-  public Integer getOrderStaff() {
-  	return orderStaff;
+  public Integer getOrderStaffId() {
+  	return orderStaffId;
   }
 	
-  public void setOrderStaff(Integer orderStaff) {
-    this.orderStaff = orderStaff;
+  public void setOrderStaffId(Integer orderStaffId) {
+    this.orderStaffId = orderStaffId;
   }
 	
   public Integer getTeamId() {
@@ -65,12 +78,12 @@ public class ClassOrderInfo extends IdEntity {
     this.status = status;
   }
 	
-  public String getMeetingTime() {
-  	return meetingTime;
+  public Integer getMeetingTimeId() {
+  	return meetingTimeId;
   }
 	
-  public void setMeetingTime(String meetingTime) {
-    this.meetingTime = meetingTime;
+  public void setMeetingTimeId(Integer meetingTimeId) {
+    this.meetingTimeId = meetingTimeId;
   }
 	
   public Date getCreateTime() {
