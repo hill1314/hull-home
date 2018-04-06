@@ -24,13 +24,13 @@ public class LoginController {
 
     /**
      * 用户登陆
-     * @param loginDto
+     * @param name
+     * @param pwd
      * @return
      */
     @RequestMapping("login")
-    public RespDto<StaffInfo> loginIn(@RequestBody LoginDto loginDto){
-        String name = loginDto.getName();
-        String pwd = loginDto.getPassword();
+//    public RespDto<StaffInfo> loginIn(@RequestBody LoginDto loginDto){
+    public RespDto<StaffInfo> loginIn(String name, String pwd){
         if(name==null || pwd==null){
             return RespDto.error("参数为空");
         }

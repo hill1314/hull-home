@@ -20,6 +20,7 @@ public class RespDto<T> extends BaseEntity {
     public static <T> RespDto<T> success(){
         RespDto respDto = new RespDto();
         respDto.setResultCode(SUCCESS);
+        respDto.setResultMsg("success");
         return respDto;
     }
 
@@ -27,6 +28,7 @@ public class RespDto<T> extends BaseEntity {
         RespDto respDto = new RespDto();
         respDto.setData(data);
         respDto.setResultCode(SUCCESS);
+        respDto.setResultMsg("success");
         return respDto;
     }
 
