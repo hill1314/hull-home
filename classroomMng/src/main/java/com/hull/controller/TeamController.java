@@ -3,6 +3,8 @@ package com.hull.controller;
 import com.hull.dto.RespDto;
 import com.hull.entity.TeamInfo;
 import com.hull.service.TeamService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,8 @@ import java.util.Map;
  **/
 @RestController("/team")
 public class TeamController {
+    Logger logger = LoggerFactory.getLogger(getClass());
+
     @Resource
     private TeamService teamService;
 
