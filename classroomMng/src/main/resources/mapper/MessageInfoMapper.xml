@@ -75,21 +75,6 @@
 	   )
 	</insert>
     
-    
-    <!--更新实体信息-->
-    <update id="update" parameterType="com.hull.entity.MessageInfo">
-      UPDATE 
-      	message_info 
-      SET 
-        `send_man` = #{sendMan},
-        `receive_man` = #{receiveMan},
-        `send_time` = #{sendTime},
-        `status` = #{status},
-        `content` = #{content},
-        `update_time` = #{updateTime}      
-      WHERE 
-    </update>
-    
     <!--更新实体信息，null值字段不更新-->
     <update id="updateIgnoreNull" parameterType="com.hull.entity.MessageInfo">
         UPDATE message_info 
@@ -110,7 +95,7 @@
            `content` = #{content},
       	  </if>
         </set>
-        WHERE  
+        WHERE  `id` = #{id}
     </update>
     
     <!--根据主键删除实体-->

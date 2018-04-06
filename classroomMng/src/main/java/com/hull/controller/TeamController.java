@@ -20,7 +20,8 @@ import java.util.Map;
  * @author
  * @create 2018-04-05 上午5:42
  **/
-@RestController("/team")
+@RestController
+@RequestMapping("team")
 public class TeamController {
     Logger logger = LoggerFactory.getLogger(getClass());
 

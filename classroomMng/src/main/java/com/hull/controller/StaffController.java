@@ -3,6 +3,7 @@ package com.hull.controller;
 import com.hull.dto.RespDto;
 import com.hull.entity.StaffInfo;
 import com.hull.service.StaffService;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,6 +64,13 @@ public class StaffController {
         if(staffInfo==null || staffInfo.getId()==null){
             return RespDto.error("主键为空");
         }
+        StaffInfo staff = new StaffInfo();
+        staff.setId(staffInfo.getId());
+        List<StaffInfo> staffs = staffService.get(staff);
+        if(CollectionUtils.isEmpty(staffs)){
+            return RespDto.error("找不到对应的用户，员工ID错误");
+        }
+
         int n = staffService.update(staffInfo);
         if(n==0){
             return RespDto.error("更新失败");
