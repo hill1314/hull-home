@@ -1,11 +1,12 @@
-import com.alibaba.druid.support.json.JSONUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.hull.dto.LoginDto;
+import com.hull.dto.RespDto;
 import com.hull.entity.*;
+import com.hull.tools.HttpClientUtil;
 
 import java.util.Date;
 import java.util.List;
+
 
 /**
  * TODO 来点注释
@@ -17,9 +18,22 @@ import java.util.List;
 public class MyTest {
     public static void main(String[] args) {
 
-        createJson();
+//        createJson();
+        analysisJson();
 
     }
+
+    private static void analysisJson() {
+        String url = "http://97.64.82.90:8000/staff/queryStaff";
+        String json = "{}";
+        String result = HttpClientUtil.doPost(url,json);
+        System.out.println(result);
+
+        RespDto<List<StaffInfo>> respDto = JSON.parseObject(result,
+                new TypeReference<RespDto<List<StaffInfo>>>(){});
+        List<StaffInfo> staffInfos = respDto.getData();
+    }
+
 
     private static void createJson() {
 //        LoginDto loginDto = new LoginDto();
@@ -36,10 +50,6 @@ public class MyTest {
         staffInfo.setTeamId(3);
         String jsonStr = JSON.toJSONString(staffInfo);
         System.out.println(jsonStr);
-
-//        List<StaffInfo> staffInfos = JSON.parseObject(jsonStr,
-//                new TypeReference<List<StaffInfo>>(){});
-
 
         ClassOrderInfo orderInfo = new ClassOrderInfo();
         orderInfo.setClassId(1);
