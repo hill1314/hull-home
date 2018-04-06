@@ -20,8 +20,8 @@ public class LoginController extends BaseController{
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/")
-    public ModelAndView toLogin() {
-        logger.info("login");
+    public ModelAndView init() {
+        logger.info("init");
         return view("login/login");
     }
 
@@ -29,5 +29,14 @@ public class LoginController extends BaseController{
     public ModelAndView home(@PathVariable String page) {
         logger.info("login");
         return view("login/"+page);
+    }
+
+    @RequestMapping("/login")
+    public ModelAndView login(@PathVariable String page) {
+        logger.info("login");
+
+
+
+        return view("login/index");
     }
 }
