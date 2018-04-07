@@ -5,7 +5,7 @@
 	<sql id="columns">
 	    a.`id`,
 	    a.`send_man`,
-	    a.`receive_man`,
+	    a.`receive_team_id`,
 	    a.`send_time`,
 	    a.`status`,
 	    a.`content`,
@@ -16,7 +16,7 @@
 	<resultMap id="beanMap" type="com.hull.entity.MessageInfo">
 	    <result property="id" column="id"/>
 	    <result property="sendMan" column="send_man"/>
-	    <result property="receiveMan" column="receive_man"/>
+	    <result property="receiveTeamId" column="receive_team_id"/>
 	    <result property="sendTime" column="send_time"/>
 	    <result property="status" column="status"/>
 	    <result property="content" column="content"/>
@@ -45,8 +45,8 @@
 		<if test="sendMan != null">
 			AND `send_man` = #{sendMan}
 		</if>
-		<if test="receiveMan != null">
-			AND `receive_man` = #{receiveMan}
+		<if test="receiveTeamId != null">
+			AND `receive_team_id` = #{receiveTeamId}
 		</if>
 		<if test="status != null">
 			AND `status` = #{status}
@@ -58,7 +58,7 @@
 	  INSERT INTO message_info 
 	    (
 	    `send_man`,
-	    `receive_man`,
+	    `receive_team_id`,
 	    `send_time`,
 	    `status`,
 	    `content`,
@@ -67,7 +67,7 @@
 	   VALUES 
 	   (
 	    #{sendMan},
-	    #{receiveMan},
+	    #{receiveTeamId},
 	    #{sendTime},
 	    #{status},
 	    #{content},
@@ -82,8 +82,8 @@
           <if test="sendMan != null">
            `send_man` = #{sendMan},
       	  </if>
-          <if test="receiveMan != null">
-           `receive_man` = #{receiveMan},
+          <if test="receiveTeamId != null">
+           `receive_team_id` = #{receiveTeamId},
       	  </if>
           <if test="sendTime != null">
            `send_time` = #{sendTime},

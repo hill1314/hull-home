@@ -1,15 +1,16 @@
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.hull.dto.LoginDto;
 import com.hull.dto.RespDto;
 import com.hull.entity.*;
-import com.hull.tools.HttpClientUtil;
+//import com.hull.tools.HttpClientUtil;
 
 import java.util.Date;
 import java.util.List;
 
 
 /**
- * TODO 来点注释
+ * 测试类
  *
  * @author
  * @create 2018-04-05 下午2:32
@@ -24,22 +25,22 @@ public class MyTest {
     }
 
     private static void analysisJson() {
-        String url = "http://97.64.82.90:8000/staff/queryStaff";
-        String json = "{}";
-        String result = HttpClientUtil.doPost(url,json);
-        System.out.println(result);
-
-        RespDto<List<StaffInfo>> respDto = JSON.parseObject(result,
-                new TypeReference<RespDto<List<StaffInfo>>>(){});
-        List<StaffInfo> staffInfos = respDto.getData();
+//        String url = "http://97.64.82.90:8000/staff/queryStaff";
+//        String json = "{}";
+//        String result = HttpClientUtil.doPost(url,json);
+//        System.out.println(result);
+//
+//        RespDto<List<StaffInfo>> respDto = JSON.parseObject(result,
+//                new TypeReference<RespDto<List<StaffInfo>>>(){});
+//        List<StaffInfo> staffInfos = respDto.getData();
     }
 
 
     private static void createJson() {
-//        LoginDto loginDto = new LoginDto();
-//        loginDto.setName("test");
-//        loginDto.setPassword("123");
-//        System.out.println(JSON.toJSONString((loginDto)));
+        LoginDto loginDto = new LoginDto();
+        loginDto.setName("test");
+        loginDto.setPassword("123");
+        System.out.println(JSON.toJSONString((loginDto)));
 
         StaffInfo staffInfo = new StaffInfo();
         staffInfo.setName("test");
@@ -73,7 +74,7 @@ public class MyTest {
         messageInfo.setContent("hello hello");
         messageInfo.setStatus("0");
         messageInfo.setSendMan(2);
-        messageInfo.setReceiveMan(3);
+        messageInfo.setReceiveTeamId(3);
         messageInfo.setSendTime(new Date());
         System.out.println(JSON.toJSONString(messageInfo));
 

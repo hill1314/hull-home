@@ -15,9 +15,9 @@ public class MessageInfo extends IdEntity {
   **/
   private Integer sendMan;
   /**
-  收信人
+  收信组
   **/
-  private Integer receiveMan;
+  private Integer receiveTeamId;
   /**
   发送时间
   **/
@@ -39,15 +39,15 @@ public class MessageInfo extends IdEntity {
   public void setSendMan(Integer sendMan) {
     this.sendMan = sendMan;
   }
-	
-  public Integer getReceiveMan() {
-  	return receiveMan;
+
+  public Integer getReceiveTeamId() {
+    return receiveTeamId;
   }
-	
-  public void setReceiveMan(Integer receiveMan) {
-    this.receiveMan = receiveMan;
+
+  public void setReceiveTeamId(Integer receiveTeamId) {
+    this.receiveTeamId = receiveTeamId;
   }
-	
+
   public Date getSendTime() {
   	return sendTime;
   }
