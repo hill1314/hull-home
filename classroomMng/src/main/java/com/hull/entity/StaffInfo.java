@@ -17,6 +17,10 @@ public class StaffInfo extends IdEntity {
   **/
   private String password;
   /**
+   * 性别
+   */
+  private Integer sex;
+  /**
   邮箱
   **/
   private String email;
@@ -49,7 +53,15 @@ public class StaffInfo extends IdEntity {
   public void setPassword(String password) {
     this.password = password;
   }
-	
+
+  public Integer getSex() {
+    return sex;
+  }
+
+  public void setSex(Integer sex) {
+    this.sex = sex;
+  }
+
   public String getEmail() {
   	return email;
   }

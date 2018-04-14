@@ -6,6 +6,7 @@
 	    a.`id`,
 	    a.`name`,
 	    a.`password`,
+	    a.`sex`,
 	    a.`email`,
 	    a.`mobile`,
 	    a.`team_id`,
@@ -17,6 +18,7 @@
 	    <result property="id" column="id"/>
 	    <result property="name" column="name"/>
 	    <result property="password" column="password"/>
+	    <result property="sex" column="sex"/>
 	    <result property="email" column="email"/>
 	    <result property="mobile" column="mobile"/>
 	    <result property="teamId" column="team_id"/>
@@ -43,10 +45,13 @@
 			AND `id` = #{id}
 		</if>
 		<if test="name != null">
-			AND `name` = #{name}
+			AND `name` like '%${name}%'
 		</if>
 		<if test="password != null">
 			AND `password` = #{password}
+		</if>
+		<if test="sex != null">
+			AND `sex` = #{sex}
 		</if>
 		<if test="email != null">
 			AND `email` = #{email}
@@ -68,6 +73,7 @@
 	    (
 	    `name`,
 	    `password`,
+	    `sex`,
 	    `email`,
 	    `mobile`,
 	    `team_id`,
@@ -77,6 +83,7 @@
 	   (
 	    #{name},
 	    #{password},
+	    #{sex},
 	    #{email},
 	    #{mobile},
 	    #{teamId},
@@ -93,6 +100,9 @@
       	  </if>
           <if test="password != null">
            `password` = #{password},
+      	  </if>
+          <if test="sex != null">
+           `sex` = #{sex},
       	  </if>
           <if test="email != null">
            `email` = #{email},
