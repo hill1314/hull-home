@@ -3,10 +3,7 @@ package com.hull.controller;
 import com.hull.dto.RespDto;
 import com.hull.entity.ClassOrderInfo;
 import com.hull.service.OrderService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -47,11 +44,13 @@ public class OrderController {
      */
     @RequestMapping("/approveOrder/{orderId}/{status}")
     public RespDto<Map<String,Object>> approve(@PathVariable Integer orderId,
-                                               @PathVariable String status){
+                                               @PathVariable String status,
+                                               @RequestParam(value = "reason",required = false) String reason
+    ){
         if(orderId==null || status==null){
             return RespDto.error("参数错误");
         }
-        int n = orderService.updateStatus(orderId,status);
+        int n = orderService.updateStatus(orderId,status,reason);
         if(n==0){
             return RespDto.error("审批失败");
         }

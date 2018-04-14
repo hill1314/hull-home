@@ -23,10 +23,11 @@ public class OrderService {
         return classOrderInfoMapper.add(orderInfo);
     }
 
-    public int updateStatus(Integer orderId, String status) {
+    public int updateStatus(Integer orderId, String status, String reason) {
         ClassOrderInfo orderInfo = new ClassOrderInfo();
         orderInfo.setId(orderId);
         orderInfo.setStatus(status);
+        orderInfo.setReason(reason);
         return classOrderInfoMapper.updateIgnoreNull(orderInfo);
     }
 

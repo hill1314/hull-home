@@ -35,6 +35,10 @@ public class ClassOrderInfo extends IdEntity {
   状态  0-已申请 1-审批通过 2-审批未通过
   **/
   private String status;
+  /**
+   * 审批原因
+   */
+  private String reason;
   private Date createTime;
   private Date updateTime;
 
@@ -77,7 +81,15 @@ public class ClassOrderInfo extends IdEntity {
   public void setStatus(String status) {
     this.status = status;
   }
-	
+
+  public String getReason() {
+    return reason;
+  }
+
+  public void setReason(String reason) {
+    this.reason = reason;
+  }
+
   public Integer getMeetingTimeId() {
   	return meetingTimeId;
   }
