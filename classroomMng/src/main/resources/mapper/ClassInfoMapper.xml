@@ -44,7 +44,7 @@
 			AND `class_no` = #{classNo}
 		</if>
 		<if test="className != null">
-			AND `class_name` = #{className}
+			AND `class_name` like '%${className}%'
 		</if>
 		<if test="type != null">
 			AND `type` = #{type}
