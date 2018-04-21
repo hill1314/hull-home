@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hull.mapper.OrderItemBaseMapper">
+	<!--查询字段-->
+	<sql id="columns">
+	    a.`id`,
+	    a.`order_id`,
+	    a.`prod_id`,
+	    a.`prod_num`,
+	    a.`amount`,
+	    a.`create_time`,
+	    a.`update_time`
+	</sql>
+	
+	<!--查询结果集-->
+	<resultMap id="beanMap" type="com.hull.entity.OrderItem">
+	    <result property="id" column="id"/>
+	    <result property="orderId" column="order_id"/>
+	    <result property="prodId" column="prod_id"/>
+	    <result property="prodNum" column="prod_num"/>
+	    <result property="amount" column="amount"/>
+	    <result property="createTime" column="create_time"/>
+	    <result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	<!--根据主键获取实体-->
+	<select id="get" resultMap="beanMap">
+	  SELECT
+		<include refid="columns"/>
+	  FROM
+		order_item a
+	  WHERE 
+	     id = #{id}
+	</select>
+    
+	<!-- 新增记录 -->
+	<insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="com.hull.entity.OrderItem">
+	  INSERT INTO order_item 
+	    (
+	    `order_id`,
+	    `prod_id`,
+	    `prod_num`,
+	    `amount`,
+	    `create_time`,
+	    `update_time`		
+	    )
+	   VALUES 
+	   (
+	    #{orderId},
+	    #{prodId},
+	    #{prodNum},
+	    #{amount},
+	    #{createTime},
+	    #{updateTime}		
+	   )
+	</insert>
+    
+    
+    <!--更新实体信息-->
+    <update id="update" parameterType="com.hull.entity.OrderItem">
+      UPDATE 
+      	order_item 
+      SET 
+        `order_id` = #{orderId},
+        `prod_id` = #{prodId},
+        `prod_num` = #{prodNum},
+        `amount` = #{amount},
+        `create_time` = #{createTime},
+        `update_time` = #{updateTime}      
+      WHERE  id = #{id}
+    </update>
+    
+    <!--更新实体信息，null值字段不更新-->
+    <update id="updateIgnoreNull" parameterType="com.hull.entity.OrderItem">
+        UPDATE order_item 
+        <set>
+          <if test="orderId != null">
+           `order_id` = #{orderId},
+      	  </if>
+          <if test="prodId != null">
+           `prod_id` = #{prodId},
+      	  </if>
+          <if test="prodNum != null">
+           `prod_num` = #{prodNum},
+      	  </if>
+          <if test="amount != null">
+           `amount` = #{amount},
+      	  </if>
+          <if test="createTime != null">
+           `create_time` = #{createTime},
+      	  </if>
+          <if test="updateTime != null">
+           `update_time` = #{updateTime},
+      	  </if>
+        </set>
+        WHERE   id = #{id}
+    </update>
+    
+    <!--根据主键删除实体-->
+    <delete id="delete">
+      DELETE FROM order_item WHERE  id = #{id}
+    </delete>
+</mapper>

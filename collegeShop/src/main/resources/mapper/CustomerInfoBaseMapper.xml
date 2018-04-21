@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hull.mapper.CustomerInfoBaseMapper">
+	<!--查询字段-->
+	<sql id="columns">
+	    a.`id`,
+	    a.`name`,
+	    a.`real_name`,
+	    a.`password`,
+	    a.`sex`,
+	    a.`email`,
+	    a.`mobile`,
+	    a.`address`,
+	    a.`role_id`,
+	    a.`create_time`,
+	    a.`update_time`
+	</sql>
+	
+	<!--查询结果集-->
+	<resultMap id="beanMap" type="com.hull.entity.CustomerInfo">
+	    <result property="id" column="id"/>
+	    <result property="name" column="name"/>
+	    <result property="realName" column="real_name"/>
+	    <result property="password" column="password"/>
+	    <result property="sex" column="sex"/>
+	    <result property="email" column="email"/>
+	    <result property="mobile" column="mobile"/>
+	    <result property="address" column="address"/>
+	    <result property="roleId" column="role_id"/>
+	    <result property="createTime" column="create_time"/>
+	    <result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	<!--根据主键获取实体-->
+	<select id="get" resultMap="beanMap">
+	  SELECT
+		<include refid="columns"/>
+	  FROM
+		customer_info a
+	  WHERE 
+	     id = #{id}
+	</select>
+
+	<select id="select" resultMap="beanMap">
+		SELECT
+		<include refid="columns"/>
+		FROM
+		customer_info a
+		WHERE 1=1
+		<if test="name != null">
+			AND `name` LIKE '%${name}%'
+		</if>
+		<if test="realName != null">
+			AND `real_name` LIKE '%${realName}%'
+		</if>
+		<if test="sex != null">
+			AND `sex` = #{sex}
+		</if>
+		<if test="email != null">
+			AND `email` LIKE '%${email}%'
+		</if>
+		<if test="mobile != null">
+			AND `mobile` = #{mobile}
+		</if>
+		<if test="address != null">
+			AND `address` LIKE '%${address}%'
+		</if>
+		<if test="roleId != null">
+			AND `role_id` = #{roleId}
+		</if>
+
+		ORDER BY create_time DESC
+	</select>
+    
+	<!-- 新增记录 -->
+	<insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="com.hull.entity.CustomerInfo">
+	  INSERT INTO customer_info 
+	    (
+	    `name`,
+	    `real_name`,
+	    `password`,
+	    `sex`,
+	    `email`,
+	    `mobile`,
+	    `address`,
+	    `role_id`,
+	    `create_time`,
+	    `update_time`		
+	    )
+	   VALUES 
+	   (
+	    #{name},
+	    #{realName},
+	    #{password},
+	    #{sex},
+	    #{email},
+	    #{mobile},
+	    #{address},
+	    #{roleId},
+	    #{createTime},
+	    #{updateTime}		
+	   )
+	</insert>
+    
+    <!--更新实体信息，null值字段不更新-->
+    <update id="updateIgnoreNull" parameterType="com.hull.entity.CustomerInfo">
+        UPDATE customer_info 
+        <set>
+          <if test="name != null">
+           `name` = #{name},
+      	  </if>
+          <if test="realName != null">
+           `real_name` = #{realName},
+      	  </if>
+          <if test="password != null">
+           `password` = #{password},
+      	  </if>
+          <if test="sex != null">
+           `sex` = #{sex},
+      	  </if>
+          <if test="email != null">
+           `email` = #{email},
+      	  </if>
+          <if test="mobile != null">
+           `mobile` = #{mobile},
+      	  </if>
+          <if test="address != null">
+           `address` = #{address},
+      	  </if>
+          <if test="roleId != null">
+           `role_id` = #{roleId},
+      	  </if>
+          <if test="createTime != null">
+           `create_time` = #{createTime},
+      	  </if>
+          <if test="updateTime != null">
+           `update_time` = #{updateTime},
+      	  </if>
+        </set>
+        WHERE   id = #{id}
+    </update>
+    
+    <!--根据主键删除实体-->
+    <delete id="delete">
+      DELETE FROM customer_info WHERE  id = #{id}
+    </delete>
+</mapper>

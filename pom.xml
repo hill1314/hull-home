@@ -19,6 +19,7 @@
         <module>spring-boot-base</module>
         <module>classroomMng</module>
         <module>tools</module>
+        <module>collegeShop</module>
     </modules>
 
 

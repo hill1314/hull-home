@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hull.mapper.ProdInfoBaseMapper">
+	<!--查询字段-->
+	<sql id="columns">
+	    a.`id`,
+	    a.`prod_name`,
+	    a.`buy_price`,
+	    a.`sale_price`,
+	    a.`stock`,
+	    a.`unit`,
+	    a.`create_time`,
+	    a.`update_time`
+	</sql>
+	
+	<!--查询结果集-->
+	<resultMap id="beanMap" type="com.hull.entity.ProdInfo">
+	    <result property="id" column="id"/>
+	    <result property="prodName" column="prod_name"/>
+	    <result property="buyPrice" column="buy_price"/>
+	    <result property="salePrice" column="sale_price"/>
+	    <result property="stock" column="stock"/>
+	    <result property="unit" column="unit"/>
+	    <result property="createTime" column="create_time"/>
+	    <result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	<!--根据主键获取实体-->
+	<select id="get" resultMap="beanMap">
+	  SELECT
+		<include refid="columns"/>
+	  FROM
+		prod_info a
+	  WHERE 
+	     id = #{id}
+	</select>
+
+	<select id="select" resultMap="beanMap">
+		SELECT
+		<include refid="columns"/>
+		FROM
+		prod_info a
+		WHERE 1=1
+		<if test="prodName != null">
+			AND `prod_name` like '%${prodName}%'
+		</if>
+		<if test="buyPrice != null">
+			AND `buy_price` = #{buyPrice}
+		</if>
+		<if test="salePrice != null">
+			AND `sale_price` = #{salePrice}
+		</if>
+		<if test="stock != null">
+			AND `stock` = #{stock}
+		</if>
+	</select>
+    
+	<!-- 新增记录 -->
+	<insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="com.hull.entity.ProdInfo">
+	  INSERT INTO prod_info 
+	    (
+	    `prod_name`,
+	    `buy_price`,
+	    `sale_price`,
+	    `stock`,
+	    `unit`,
+	    `create_time`,
+	    `update_time`		
+	    )
+	   VALUES 
+	   (
+	    #{prodName},
+	    #{buyPrice},
+	    #{salePrice},
+	    #{stock},
+	    #{unit},
+	    #{createTime},
+	    #{updateTime}		
+	   )
+	</insert>
+    
+    <!--更新实体信息，null值字段不更新-->
+    <update id="updateIgnoreNull" parameterType="com.hull.entity.ProdInfo">
+        UPDATE prod_info 
+        <set>
+          <if test="prodName != null">
+           `prod_name` = #{prodName},
+      	  </if>
+          <if test="buyPrice != null">
+           `buy_price` = #{buyPrice},
+      	  </if>
+          <if test="salePrice != null">
+           `sale_price` = #{salePrice},
+      	  </if>
+          <if test="stock != null">
+           `stock` = #{stock},
+      	  </if>
+          <if test="unit != null">
+           `unit` = #{unit},
+      	  </if>
+          <if test="createTime != null">
+           `create_time` = #{createTime},
+      	  </if>
+          <if test="updateTime != null">
+           `update_time` = #{updateTime},
+      	  </if>
+        </set>
+        WHERE   id = #{id}
+    </update>
+    
+    <!--根据主键删除实体-->
+    <delete id="delete">
+      DELETE FROM prod_info WHERE  id = #{id}
+    </delete>
+</mapper>
