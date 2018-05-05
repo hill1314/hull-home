@@ -5,6 +5,8 @@ import com.hull.entity.UserInfo;
 import com.hull.service.UserService;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,8 +27,17 @@ public class UserController {
     @Resource
     private UserService userService;
 
+    @RequestMapping("list")
+    public RespDto<List<UserInfo>> list(@RequestBody UserInfo userInfo){
+        List<UserInfo> userInfoList = userService.find(userInfo);
+        return RespDto.success(userInfoList);
+    }
+
     @RequestMapping("register")
-    public RespDto<UserInfo> registerUser(UserInfo userInfo){
+    public RespDto<UserInfo> registerUser(@RequestBody UserInfo userInfo){
+        if(StringUtils.isEmpty(userInfo.getName()) || StringUtils.isEmpty(userInfo.getPassword())){
+            return RespDto.error("用户名和密码不能为空");
+        }
         int n = userService.add(userInfo);
         if(n==0){
             return RespDto.error("添加失败");
@@ -40,6 +51,8 @@ public class UserController {
             return RespDto.error("参数为空");
         }
         UserInfo userInfo = new UserInfo();
+        userInfo.setName(name);
+        userInfo.setPassword(pwd);
         List<UserInfo> list = userService.find(userInfo);
         if(CollectionUtils.isEmpty(list)){
             return RespDto.error("用户名或密码错误");
@@ -48,7 +61,7 @@ public class UserController {
     }
 
     @RequestMapping("modify")
-    public RespDto<UserInfo> modify(UserInfo userInfo){
+    public RespDto<UserInfo> modify(@RequestBody UserInfo userInfo){
         if(StringUtils.isEmpty(userInfo.getId())){
             return RespDto.error("主键为空");
         }
@@ -59,8 +72,8 @@ public class UserController {
         return RespDto.success(userInfo);
     }
 
-    @RequestMapping("del")
-    public RespDto<UserInfo> del(Long id){
+    @RequestMapping("del/{id}")
+    public RespDto<UserInfo> del(@PathVariable Long id){
         if(StringUtils.isEmpty(id)){
             return RespDto.error("主键为空");
         }

@@ -23,13 +23,14 @@ public class PwdInfoService {
     private PwdInfoBaseMapper pwdInfoMapper;
 
     /**
-     * 查找
+     * 列表
      * @param pwdInfo
      * @return
      */
     public List<PwdInfo> find(PwdInfo pwdInfo){
         return pwdInfoMapper.select(pwdInfo);
     }
+
 
     /**
      * 增
@@ -66,7 +67,8 @@ public class PwdInfoService {
     public PwdInfo encrypt(PwdInfo pwdInfo){
         String encryptStr = pwdInfo.getLoginPwd();
         try {
-            encryptStr = SecurityUtil.AesUtil.encrypt(encryptStr, "123456");
+            String secretKeyStr = SecurityUtil.AesUtil.generaterKey("123456");
+            encryptStr = SecurityUtil.AesUtil.encrypt(encryptStr, secretKeyStr);
         } catch (Exception e) {
             log.error(e.getMessage());
         }
@@ -76,17 +78,17 @@ public class PwdInfoService {
 
     /**
      * 解密
-     * @param pwdInfo
+     * @param pwd
      * @return
      */
-    public PwdInfo decrypt(PwdInfo pwdInfo){
-        String decryptStr = pwdInfo.getLoginPwd();
+    public String decrypt(String pwd){
+        String decryptStr = pwd;
         try {
-            decryptStr = SecurityUtil.AesUtil.decrypt(decryptStr, "123456");
+            String secretKeyStr = SecurityUtil.AesUtil.generaterKey("123456");
+            decryptStr = SecurityUtil.AesUtil.decrypt(decryptStr, secretKeyStr);
         } catch (Exception e) {
             log.error(e.getMessage());
         }
-        pwdInfo.setLoginPwd(decryptStr);
-        return pwdInfo;
+        return decryptStr;
     }
 }
