@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hull.mapper.PwdInfoBaseMapper">
+	<!--查询字段-->
+	<sql id="columns">
+	    a.`id`,
+	    a.`user_id`,
+	    a.`type`,
+	    a.`login_code`,
+	    a.`login_pwd`,
+	    a.`created`,
+	    a.`modified`
+	</sql>
+	
+	<!--查询结果集-->
+	<resultMap id="beanMap" type="com.hull.entity.PwdInfo">
+	    <result property="id" column="id"/>
+	    <result property="userId" column="user_id"/>
+	    <result property="type" column="type"/>
+	    <result property="loginCode" column="login_code"/>
+	    <result property="loginPwd" column="login_pwd"/>
+	    <result property="created" column="created"/>
+	    <result property="modified" column="modified"/>
+	</resultMap>
+	
+	<!--根据主键获取实体-->
+	<select id="get" resultMap="beanMap">
+	  SELECT
+		<include refid="columns"/>
+	  FROM
+		pwd_info a
+	  WHERE 
+	     id = #{id}
+	</select>
+
+	<select id="select" resultMap="beanMap">
+		SELECT
+		<include refid="columns"/>
+		FROM
+			pwd_info a
+		WHERE 1=1
+		<if test="userId != null">
+			AND `user_id` = #{userId}
+		</if>
+		<if test="type != null">
+			AND `type` = #{type}
+		</if>
+		<if test="loginCode != null">
+			AND `login_code` = #{loginCode}
+		</if>
+		<if test="loginPwd != null">
+			AND `login_pwd` = #{loginPwd}
+		</if>
+	</select>
+    
+	<!-- 新增记录 -->
+	<insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="com.hull.entity.PwdInfo">
+	  INSERT INTO pwd_info 
+	    (
+	    `user_id`,
+	    `type`,
+	    `login_code`,
+	    `login_pwd`		
+	    )
+	   VALUES 
+	   (
+	    #{userId},
+	    #{type},
+	    #{loginCode},
+	    #{loginPwd}		
+	   )
+	</insert>
+    
+    
+    <!--更新实体信息-->
+    <update id="update" parameterType="com.hull.entity.PwdInfo">
+      UPDATE 
+      	pwd_info 
+      SET 
+        `user_id` = #{userId},
+        `type` = #{type},
+        `login_code` = #{loginCode},
+        `login_pwd` = #{loginPwd}      
+      WHERE  id = #{id}
+    </update>
+    
+    <!--更新实体信息，null值字段不更新-->
+    <update id="updateIgnoreNull" parameterType="com.hull.entity.PwdInfo">
+        UPDATE pwd_info 
+        <set>
+          <if test="userId != null">
+           `user_id` = #{userId},
+      	  </if>
+          <if test="type != null">
+           `type` = #{type},
+      	  </if>
+          <if test="loginCode != null">
+           `login_code` = #{loginCode},
+      	  </if>
+          <if test="loginPwd != null">
+           `login_pwd` = #{loginPwd},
+      	  </if>
+        </set>
+        WHERE   id = #{id}
+    </update>
+    
+    <!--根据主键删除实体-->
+    <delete id="delete">
+      DELETE FROM pwd_info WHERE  id = #{id}
+    </delete>
+</mapper>

@@ -1,5 +1,6 @@
 package com.hull.service;
 
+import com.hull.annotations.LogAnnotation;
 import com.hull.dto.RespDto;
 import com.hull.entity.StaffInfo;
 import com.hull.mapper.StaffInfoMapper;
@@ -21,6 +22,7 @@ public class StaffService {
     @Resource
     private StaffInfoMapper staffInfoMapper;
 
+    @LogAnnotation(type = 1,info = "getByNameAndPwd")
     public StaffInfo getByNameAndPwd(String name, String pwd) {
         StaffInfo staffInfo = new StaffInfo();
         staffInfo.setName(name);
