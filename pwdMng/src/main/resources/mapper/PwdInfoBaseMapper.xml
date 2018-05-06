@@ -8,6 +8,7 @@
 	    a.`type`,
 	    a.`login_code`,
 	    a.`login_pwd`,
+	    a.`mobile`,
 	    a.`created`,
 	    a.`modified`
 	</sql>
@@ -19,6 +20,7 @@
 	    <result property="type" column="type"/>
 	    <result property="loginCode" column="login_code"/>
 	    <result property="loginPwd" column="login_pwd"/>
+		<result property="mobile" column="mobile"/>
 	    <result property="created" column="created"/>
 	    <result property="modified" column="modified"/>
 	</resultMap>
@@ -45,7 +47,7 @@
 		<if test="type != null">
 			AND `type` = #{type}
 		</if>
-		<if test="loginCode != null">
+		<if test="loginCode != null and loginCode!=''">
 			AND `login_code` = #{loginCode}
 		</if>
 		<if test="loginPwd != null">
@@ -60,29 +62,18 @@
 	    `user_id`,
 	    `type`,
 	    `login_code`,
-	    `login_pwd`		
+	    `login_pwd`	,
+		`mobile`
 	    )
 	   VALUES 
 	   (
 	    #{userId},
 	    #{type},
 	    #{loginCode},
-	    #{loginPwd}		
+	    #{loginPwd}	,
+	    #{mobile}
 	   )
 	</insert>
-    
-    
-    <!--更新实体信息-->
-    <update id="update" parameterType="com.hull.entity.PwdInfo">
-      UPDATE 
-      	pwd_info 
-      SET 
-        `user_id` = #{userId},
-        `type` = #{type},
-        `login_code` = #{loginCode},
-        `login_pwd` = #{loginPwd}      
-      WHERE  id = #{id}
-    </update>
     
     <!--更新实体信息，null值字段不更新-->
     <update id="updateIgnoreNull" parameterType="com.hull.entity.PwdInfo">
@@ -100,6 +91,9 @@
           <if test="loginPwd != null">
            `login_pwd` = #{loginPwd},
       	  </if>
+			<if test="mobile != null">
+				`mobile` = #{mobile},
+			</if>
         </set>
         WHERE   id = #{id}
     </update>

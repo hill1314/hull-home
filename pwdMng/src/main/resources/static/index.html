@@ -25,6 +25,7 @@
 		<th>手机号</th>
 		<th>操作</th>
 	</tr>
+
 	<tr>
 		<td>15222</td>
 		<td>14343</td>
@@ -37,8 +38,8 @@
    		<span class="close">X</span>
         <div class="form1">
             <p class="p-input pos">
-                <label for="num">用户名/账号</label>
-                <input type="text" id="num">
+                <label for="code">用户名/账号</label>
+                <input type="text" id="code">
                 <span class="tel-warn num-err hide"><em>账号或密码错误，请重新输入</em><i class="icon-warn"></i></span>
             </p>
             <p class="p-input pos">
@@ -50,9 +51,10 @@
         </div>
         <button class="lang-btn" onclick="searchbtn()">查询</button>
     </div>
+
    <div class="form-data pos addbox hide">
    		<span class="close">X</span>  	
-        <div class="form1">
+        <div class="formADD">
             <p class="p-input pos">
                 <label for="use_name">用户名/账号</label>
                 <input type="text" id="use_name">
@@ -70,30 +72,31 @@
                 <input type="text" id="use_mobile">
             </p>            
         </div>
-        <button class="lang-btn log-btn">添加</button>
-    </div>   
+        <button class="lang-btn log-btn" onclick="addBtn()">添加</button>
+    </div>
+
    <div class="form-data pos editbox  hide">
-   		<span class="close">X</span>   	
-        <div class="form1">
+   		<span class="close">X</span>
+        <div class="formMod">
             <p class="p-input pos">
-                <label for="use_name">用户名/账号</label>
-                <input type="text" id="use_name">
+                <label for="use_name_m">用户名/账号</label>
+                <input type="text" id="use_name_m">
             </p>
             <p class="p-input pos">
-                <label for="use_password">密码</label>
-                <input type="text" id="use_password">
+                <label for="use_password_m">密码</label>
+                <input type="text" id="use_password_m">
             </p>
             <p class="p-input pos">
-                <label for="use_type">用户名/类型</label>
-                <input type="text" id="use_type">
+                <label for="use_type_m">用户名/类型</label>
+                <input type="text" id="use_type_m">
             </p>
             <p class="p-input pos">
-                <label for="use_mobile">手机号</label>
-                <input type="text" id="use_mobile">
-            </p>            
+                <label for="use_mobile_m">手机号</label>
+                <input type="text" id="use_mobile_m">
+            </p>
         </div>
-        <button class="lang-btn log-btn">保存</button>
-    </div>     
+        <button class="lang-btn mod-btn" onclick="modBtn()">保存</button>
+    </div>
 <script src="./js/jquery.js"></script>
 <script src="./js/index.js"></script>
 </body>

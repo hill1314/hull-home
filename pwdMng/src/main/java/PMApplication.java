@@ -22,11 +22,6 @@ public class PMApplication {
         SpringApplication.run(PMApplication.class);
     }
 
-//    @RequestMapping("/")
-//    public String init(){
-//        return "Welcome to pwd-manage-system!";
-//    }
-
     @RequestMapping("/")
     public ModelAndView login(){
         return new ModelAndView("login");

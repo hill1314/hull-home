@@ -7,7 +7,6 @@
 	    a.`name`,
 	    a.`password`,
 	    a.`verify_code`,
-	    a.`mobile`,
 	    a.`created`,
 	    a.`modified`
 	</sql>
@@ -18,7 +17,6 @@
 	    <result property="name" column="name"/>
 	    <result property="password" column="password"/>
 	    <result property="verifyCode" column="verify_code"/>
-	    <result property="mobile" column="mobile"/>
 	    <result property="created" column="created"/>
 	    <result property="modified" column="modified"/>
 	</resultMap>
@@ -45,12 +43,7 @@
 		<if test="password != null">
 			AND `password` = #{password}
 		</if>
-		<if test="verifyCode != null">
-			AND `verify_code` = #{verifyCode}
-		</if>
-		<if test="mobile != null">
-			AND `mobile` = #{mobile}
-		</if>
+
 	</select>
     
 	<!-- 新增记录 -->
@@ -59,30 +52,15 @@
 	    (
 	    `name`,
 	    `password`,
-	    `verify_code`,
-	    `mobile`		
+	    `verify_code`
 	    )
 	   VALUES 
 	   (
 	    #{name},
 	    #{password},
-	    #{verifyCode},
-	    #{mobile}		
+	    #{verifyCode}
 	   )
 	</insert>
-    
-    
-    <!--更新实体信息-->
-    <update id="update" parameterType="com.hull.entity.UserInfo">
-      UPDATE 
-      	user_info 
-      SET 
-        `name` = #{name},
-        `password` = #{password},
-        `verify_code` = #{verifyCode},
-        `mobile` = #{mobile}      
-      WHERE  id = #{id}
-    </update>
     
     <!--更新实体信息，null值字段不更新-->
     <update id="updateIgnoreNull" parameterType="com.hull.entity.UserInfo">
@@ -96,9 +74,6 @@
       	  </if>
           <if test="verifyCode != null">
            `verify_code` = #{verifyCode},
-      	  </if>
-          <if test="mobile != null">
-           `mobile` = #{mobile},
       	  </if>
         </set>
         WHERE   id = #{id}

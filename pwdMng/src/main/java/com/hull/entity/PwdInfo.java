@@ -15,6 +15,7 @@ public class PwdInfo extends IdEntity {
   private String type;
   private String loginCode;
   private String loginPwd;
+  private String mobile;
   private Date created;
   private Date modified;
 
@@ -48,6 +49,14 @@ public class PwdInfo extends IdEntity {
 	
   public void setLoginPwd(String loginPwd) {
     this.loginPwd = loginPwd;
+  }
+
+  public String getMobile() {
+    return mobile;
+  }
+
+  public void setMobile(String mobile) {
+    this.mobile = mobile;
   }
 
   public Date getCreated() {

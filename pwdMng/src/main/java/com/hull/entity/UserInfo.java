@@ -16,7 +16,7 @@ public class UserInfo extends IdEntity {
   识别码
   **/
   private String verifyCode;
-  private String mobile;
+
   private Date created;
   private Date modified;
 
@@ -42,14 +42,6 @@ public class UserInfo extends IdEntity {
 	
   public void setVerifyCode(String verifyCode) {
     this.verifyCode = verifyCode;
-  }
-	
-  public String getMobile() {
-  	return mobile;
-  }
-	
-  public void setMobile(String mobile) {
-    this.mobile = mobile;
   }
 
   public Date getCreated() {

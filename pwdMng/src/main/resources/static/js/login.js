@@ -69,7 +69,7 @@ $(function(){
 
 		console.log(inp+"-"+pass+"-"+confirmPwd)
         if(checkAccount(inp) && checkPass(pass) && checkCPass(confirmPwd,pass)){
-            var ldata = {"mobile":"123","name":inp,"password":pass,"verifyCode":"123"};
+            var ldata = {"name":inp,"password":pass,"verifyCode":"123"};
             $.ajax({
                 url: '/user/register',
                 type: 'POST',
