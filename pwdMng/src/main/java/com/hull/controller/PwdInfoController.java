@@ -28,15 +28,21 @@ public class PwdInfoController {
 
     @RequestMapping("list")
     public RespDto<List<PwdInfo>> list(@RequestBody PwdInfo pwdInfo){
+        if(pwdInfo==null || StringUtils.isEmpty(pwdInfo.getUserId())){
+            return RespDto.success();
+        }
         List<PwdInfo> pwdInfoList = pwdInfoService.find(pwdInfo);
         return RespDto.success(pwdInfoList);
     }
 
     @RequestMapping("decrypt")
-    public RespDto<String> decrypt(@RequestBody PwdInfo pwdInfo){
-        if(StringUtils.isEmpty(pwdInfo.getLoginCode()) || StringUtils.isEmpty(pwdInfo.getUserId())){
+    public RespDto<String> decrypt(String userId , String loginCode,String key){
+        if(StringUtils.isEmpty(userId) || StringUtils.isEmpty(loginCode)){
             return RespDto.error("登陆名、用户ID 不能为空");
         }
+        PwdInfo pwdInfo = new PwdInfo();
+        pwdInfo.setUserId(Integer.valueOf(userId));
+        pwdInfo.setLoginCode(loginCode);
         List<PwdInfo> pwdInfoList = pwdInfoService.find(pwdInfo);
         if(CollectionUtils.isEmpty(pwdInfoList)){
             return RespDto.error("无此信息");
