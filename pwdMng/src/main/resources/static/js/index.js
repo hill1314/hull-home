@@ -38,8 +38,10 @@ function addBtn(){
     var use_password = $.trim($('#use_password').val());
     var use_type = $.trim($('#use_type').val());
     var use_mobile = $.trim($('#use_mobile').val());
+    var userId = sessionStorage.getItem("userId");
+    console.log("===="+userId);
 
-    var ldata = {"loginCode":use_name,"loginPwd":use_password,"type":use_type,"mobile":use_mobile}
+    var ldata = {"loginCode":use_name,"loginPwd":use_password,"type":use_type,"mobile":use_mobile,"userId":userId}
     $.ajax({
         url: '/pwd/add/',
         type: 'POST',
@@ -67,8 +69,9 @@ function modBtn(){
     var use_password = $.trim($('#use_password_m').val());
     var use_type = $.trim($('#use_type_m').val());
     var use_mobile = $.trim($('#use_mobile_m').val());
+    var userId = sessionStorage.getItem("userId");
 
-    var ldata = {"loginCode":use_name,"loginPwd":use_password,"type":use_type,"mobile":use_mobile}
+    var ldata = {"loginCode":use_name,"loginPwd":use_password,"type":use_type,"mobile":use_mobile,"userId":userId}
     $.ajax({
         url: '/pwd/modify/',
         type: 'POST',

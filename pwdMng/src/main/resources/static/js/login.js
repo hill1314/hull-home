@@ -48,6 +48,8 @@ $(function(){
 	            	console.log(data);
 	                if (data.resultCode == '0000') {
 	                	alert("登陆成功");
+                        sessionStorage.setItem("userId",data.data.id);
+                        console.log("userId:"+data.data.id+"=="+sessionStorage.getItem("userId"));
                         window.location.href = "index.html";
 	                } else {
 						alert(data.resultMsg);
@@ -81,6 +83,8 @@ $(function(){
                     console.log(data);
                     if (data.resultCode == '0000') {
                         alert("注册成功");
+                        sessionStorage.setItem("userId",data.data.id);
+                        console.log("userId:"+data.data.id+"=="+sessionStorage.getItem("userId"));
                         window.location.href = "index.html";
                     } else {
                         alert(data.resultMsg);

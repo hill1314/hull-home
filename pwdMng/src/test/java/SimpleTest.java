@@ -76,7 +76,6 @@ public class SimpleTest {
         userInfo.setName("张三");
         userInfo.setPassword("123123");
         userInfo.setVerifyCode("123456");
-        userInfo.setMobile("13111112222");
         String json = JSON.toJSONString(userInfo);
         System.out.println(json);
     }

@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -47,7 +49,9 @@ public class UserController {
     }
 
     @RequestMapping("login")
-    public RespDto<UserInfo> login(String name ,String pwd){
+    public RespDto<UserInfo> login(HttpServletRequest request,
+                                   HttpServletResponse response,
+                                   String name , String pwd){
         if(StringUtils.isEmpty(name) || StringUtils.isEmpty(pwd)){
             return RespDto.error("参数为空");
         }
@@ -58,7 +62,16 @@ public class UserController {
         if(CollectionUtils.isEmpty(list)){
             return RespDto.error("用户名或密码错误");
         }
-        return RespDto.success(list.get(0));
+
+        userInfo = list.get(0);
+        setSession(response,userInfo.getId());
+        return RespDto.success(userInfo);
+    }
+
+    private void setSession(HttpServletResponse response, Integer id) {
+        Cookie cookie = new Cookie("PM_USER_ID", id+"");
+        cookie.setPath("/tmp/pm/");
+        response.addCookie(cookie);
     }
 
     @RequestMapping("modify")
