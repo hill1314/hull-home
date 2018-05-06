@@ -1,0 +1,50 @@
+.wrap {
+    text-align: center;
+    height: unset;
+ }
+.lang-btn {
+    width: 100px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    margin: 20px auto;
+    display: block;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fcab2b;
+    display: inline-block;
+}
+table {
+    width: 80%;
+    margin: auto;
+    background: #fff;
+}
+table tr {
+    height: 2rem;
+    text-align: center;
+}
+.form-data {
+	padding: 10px;
+}
+.form-data .close {
+    position: absolute;
+    right: 1rem;
+    font-size: 1.1rem;
+}
+#user_exit {
+	text-align: right;
+}
+#user_exit a {
+    background: #fff;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    width: 50px;
+    height: 40px;
+    border-radius: 1px;
+    display: inline-block;    
+    text-align: center;
+    line-height: 40px;
+}
