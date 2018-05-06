@@ -10,19 +10,19 @@ import org.junit.Assert;
 
 public class SecurityTest {
 
-    public static void main(String[] args)  throws Exception{
+//    public static void main(String[] args)  throws Exception{
 //        System.out.println("-----------<<< testDigest >>>------------------");
 //        testDigest();
 //        System.out.println();
 
-        System.out.println("-----------<<< testAes >>>------------------");
-        testAes();
-        System.out.println();
+//        System.out.println("-----------<<< testAes >>>------------------");
+//        testAes();
+//        System.out.println();
 
 //        System.out.println("-----------<<< testRsa >>>------------------");
 //        testRsa();
 //        System.out.println();
-    }
+//    }
 
     /**
      * 对称加密算法

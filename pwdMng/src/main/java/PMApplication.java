@@ -4,6 +4,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 启动类
@@ -21,9 +22,18 @@ public class PMApplication {
         SpringApplication.run(PMApplication.class);
     }
 
+//    @RequestMapping("/")
+//    public String init(){
+//        return "Welcome to pwd-manage-system!";
+//    }
+
     @RequestMapping("/")
-    public String init(){
-        return "Welcome to pwd-manage-system!";
+    public ModelAndView login(){
+        return new ModelAndView("login");
     }
 
+    @RequestMapping("/index")
+    public ModelAndView index(){
+        return new ModelAndView("index");
+    }
 }
