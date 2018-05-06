@@ -18,6 +18,7 @@ import java.util.List;
 @Slf4j
 @Service
 public class PwdInfoService {
+    private static final String DEFAULT_SECRET_KEY = "0123456789ABCDEF";
 
     @Resource
     private PwdInfoBaseMapper pwdInfoMapper;
@@ -67,7 +68,7 @@ public class PwdInfoService {
     public PwdInfo encrypt(PwdInfo pwdInfo){
         String encryptStr = pwdInfo.getLoginPwd();
         try {
-            String secretKeyStr = SecurityUtil.AesUtil.generaterKey("123456");
+            String secretKeyStr = SecurityUtil.AesUtil.generaterKey(DEFAULT_SECRET_KEY);
             encryptStr = SecurityUtil.AesUtil.encrypt(encryptStr, secretKeyStr);
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -84,7 +85,7 @@ public class PwdInfoService {
     public String decrypt(String pwd){
         String decryptStr = pwd;
         try {
-            String secretKeyStr = SecurityUtil.AesUtil.generaterKey("123456");
+            String secretKeyStr = SecurityUtil.AesUtil.generaterKey(DEFAULT_SECRET_KEY);
             decryptStr = SecurityUtil.AesUtil.decrypt(decryptStr, secretKeyStr);
         } catch (Exception e) {
             log.error(e.getMessage());

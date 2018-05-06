@@ -3,6 +3,10 @@ import com.hull.entity.PwdInfo;
 import com.hull.entity.UserInfo;
 import com.hull.util.SecurityUtil;
 
+import javax.crypto.KeyGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+
 /**
  *  测试类
  *
@@ -15,7 +19,35 @@ public class SimpleTest {
     public static void main(String[] args) {
 //        createUser();
 //        createPWD();
-        encrypt();
+//        encrypt();
+//        decrypt();
+        testKey();
+
+    }
+
+    private static void testKey() {
+        KeyGenerator keygen = null;
+        try {
+            keygen = KeyGenerator.getInstance("AES");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        keygen.init(128); // 16 字节 == 128 bit
+
+        //zNgW6Qz3lI5A6cMmD6ixCg==
+        String str = Base64.getEncoder().encodeToString(keygen.generateKey().getEncoded());
+        System.out.println(str);
+    }
+
+    private static void decrypt() {
+        String decryptStr = "KL3nme2GDV53StNduUlGKg==";
+        try {
+            String secretKeyStr = SecurityUtil.AesUtil.generaterKey("123456");
+            decryptStr = SecurityUtil.AesUtil.decrypt(decryptStr, secretKeyStr);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(decryptStr);
     }
 
     private static void encrypt() {

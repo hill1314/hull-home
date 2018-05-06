@@ -1,6 +1,7 @@
 package com.hull.util;
 
 import java.security.Key;
+import java.security.SecureRandom;
 import java.util.Base64;
 
 import org.apache.tomcat.util.buf.HexUtils;
@@ -30,8 +31,8 @@ public class SecurityTest {
     public static void testAes() throws Exception {
         String content = "I love U";
         System.out.println("要加密的内容："+content);
-        String secretKeyStr = SecurityUtil.AesUtil.generaterKey();
-        System.out.println("密钥："+secretKeyStr);
+        String secretKeyStr = SecurityUtil.AesUtil.generaterKey("0123456789ABCDEF");
+        System.out.println("密钥："+secretKeyStr); // MTIzNDU2MTIzNDU2MTIzNA==
         String encryptStr = SecurityUtil.AesUtil.encrypt(content, secretKeyStr);
         System.out.println("加密后："+encryptStr);
         String decryptStr = SecurityUtil.AesUtil.decrypt(encryptStr, secretKeyStr);

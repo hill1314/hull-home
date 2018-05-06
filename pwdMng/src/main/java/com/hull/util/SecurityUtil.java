@@ -63,6 +63,7 @@ public class SecurityUtil {
         public static String generaterKey() throws NoSuchAlgorithmException {
             KeyGenerator keygen = KeyGenerator.getInstance(ALGORITHM);
             keygen.init(128, new SecureRandom()); // 16 字节 == 128 bit
+//            keygen.init(128, new SecureRandom(seedStr.getBytes())); // 随机因子一样，生成出来的秘钥会一样
             SecretKey secretKey = keygen.generateKey();
             return Base64.getEncoder().encodeToString(secretKey.getEncoded());
         }
@@ -73,13 +74,11 @@ public class SecurityUtil {
          * @throws NoSuchAlgorithmException
          */
         public static String generaterKey(String seedStr) throws NoSuchAlgorithmException {
-            KeyGenerator keygen = KeyGenerator.getInstance(ALGORITHM);
-            keygen.init(128, new SecureRandom(seedStr.getBytes())); // 随机因子一样，生成出来的秘钥会一样
-            SecretKey secretKey = keygen.generateKey();
-            return Base64.getEncoder().encodeToString(secretKey.getEncoded());
+            return Base64.getEncoder().encodeToString(seedStr.getBytes());
         }
 
         /**
+         * 还原密钥
          */
         public static SecretKeySpec getSecretKeySpec(String secretKeyStr){
             byte[] secretKey = Base64.getDecoder().decode(secretKeyStr);
