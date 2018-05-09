@@ -13,7 +13,7 @@ Please DO NOT modify this file
 **/
 
 @Repository
-public interface UserInfoBaseMapper extends BaseMapper<Long,UserInfo> {
+public interface UserInfoBaseMapper extends BaseMapper<Integer,UserInfo> {
 
     List<UserInfo> select(UserInfo userInfo);
 }

@@ -41,6 +41,9 @@ public class UserController {
         if(StringUtils.isEmpty(userInfo.getName()) || StringUtils.isEmpty(userInfo.getPassword())){
             return RespDto.error("用户名和密码不能为空");
         }
+        if(StringUtils.isEmpty(userInfo.getVerifyCode())){
+            userInfo.setVerifyCode("qwer");
+        }
         int n = userService.add(userInfo);
         if(n==0){
             return RespDto.error("添加失败");
@@ -87,7 +90,7 @@ public class UserController {
     }
 
     @RequestMapping("del/{id}")
-    public RespDto<UserInfo> del(@PathVariable Long id){
+    public RespDto<UserInfo> del(@PathVariable Integer id){
         if(StringUtils.isEmpty(id)){
             return RespDto.error("主键为空");
         }

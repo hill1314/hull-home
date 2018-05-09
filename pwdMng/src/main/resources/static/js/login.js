@@ -69,9 +69,9 @@ $(function(){
         var pass = $.trim($('#passport').val());
         var confirmPwd = $.trim($('#passport2').val());
 
-        console.log(inp+"-"+pass+"-"+confirmPwd)
+        console.log(inp+"-"+pass+"-"+confirmPwd);
         if(checkAccount(inp) && checkPass(pass) && checkCPass(confirmPwd,pass)){
-            var ldata = {"name":inp,"password":pass,"verifyCode":"123"};
+            var ldata = {"name":inp,"password":pass,"verifyCode":"qwer"};
             $.ajax({
                 url: '/user/register',
                 type: 'POST',

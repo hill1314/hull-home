@@ -41,7 +41,7 @@ public class UserService {
      * @param id
      * @return
      */
-    public int del(Long id){
+    public int del(Integer id){
         return userInfoMapper.delete(id);
     }
 
