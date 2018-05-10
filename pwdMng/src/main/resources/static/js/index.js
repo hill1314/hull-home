@@ -83,12 +83,38 @@ function addBtn(){
     });
 }
 
-function editinfo(ele){
+function editinfo(id){
+    // alert(id);
     $('.editbox').removeClass('hide');
-    $('#use_name_m').val(ele.loginCode);
-    $('#use_password_m').val(ele.loginPwd);
-    $('#use_type_m').val(ele.type);
-    $('#use_mobile_m').val(ele.mobile);
+    // $('#use_name_m').val(loginCode);
+    // $('#use_password_m').val(loginPwd);
+    // $('#use_type_m').val(type);
+    // $('#use_mobile_m').val(mobile);
+}
+
+function delInfo(id){
+    if(true==window.confirm("确定删除吗")){
+        var ldata = {"id":id}
+        $.ajax({
+            url: '/pwd/del/'+id,
+            type: 'POST',
+            dataType: 'json',
+            async: true,
+            data: ldata,
+            success:function(data){
+                console.log(data);
+                if (data.resultCode == '0000') {
+                    alert("删除成功");
+                    window.location.href = "index.html";
+                } else {
+                    alert(data.resultMsg);
+                }
+            },
+            error:function(ref){
+                console.error(ref,'ref');
+            }
+        });
+    }
 }
 
 function modBtn(){
@@ -136,8 +162,13 @@ function initlists(data) {
             '<td>'+ele.loginPwd+'</td>' +
             '<td>'+ele.type+'</td>' +
             '<td>'+ele.mobile+'</td>' +
-            '<td class="user_edit" data-index="'+i+'" ' +
-            '   onclick="editinfo('+ele+')">编辑</td>' +
+            '<td class="user_edit" data-index="'+i+'"' +
+            '<a href="" onclick="editinfo('
+                +ele.id+
+            ')">编辑</a>' + '<br/>'+
+            '<a href="" onclick="delInfo('+ele.id+')">删除</a>' +
+            '</td>'+
+
             '</tr>';
     });
     $('table').append(listdom);
