@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/collegeShop/collegeShop.iml" filepath="$PROJECT_DIR$/collegeShop/collegeShop.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/hull-home.iml" filepath="$PROJECT_DIR$/.idea/hull-home.iml" />
       <module fileurl="file://$PROJECT_DIR$/pwdMng/pwdMng.iml" filepath="$PROJECT_DIR$/pwdMng/pwdMng.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scoresMng/scoresMng.iml" filepath="$PROJECT_DIR$/scoresMng/scoresMng.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-base/spring-boot-base.iml" filepath="$PROJECT_DIR$/spring-boot-base/spring-boot-base.iml" />
       <module fileurl="file://$PROJECT_DIR$/tools/tools.iml" filepath="$PROJECT_DIR$/tools/tools.iml" />
     </modules>

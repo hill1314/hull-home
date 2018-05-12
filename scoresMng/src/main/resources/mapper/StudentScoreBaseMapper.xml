@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hull.mapper.StudentScoreMapper">
+	<!--查询字段-->
+	<sql id="columns">
+	    a.`student_id`,
+	    a.`student_name`,
+	    a.`total_score`,
+	    a.`lesson_num`,
+	    a.`sex`,
+	    a.`total_credit`,
+	    a.`average_credit`,
+	    a.`ranking`,
+	    a.`english_1`,
+	    a.`english_2`,
+	    a.`english_3`,
+	    a.`math_1_1`,
+	    a.`math_1_2`,
+	    a.`linear_math`,
+	    a.`language_design`,
+	    a.`language_design_test`,
+	    a.`object_language_design`,
+	    a.`language_design_train`,
+	    a.`digital_systerm_design`,
+	    a.`digital_systerm_design_test`,
+	    a.`moral_and_law`,
+	    a.`chinese_history`,
+	    a.`max_theory`,
+	    a.`sports`,
+	    a.`profession_plan`,
+	    a.`mind_health`
+	</sql>
+	
+	<!--查询结果集-->
+	<resultMap id="beanMap" type="com.hull.entity.StudentScore">
+	    <result property="studentId" column="student_id"/>
+	    <result property="studentName" column="student_name"/>
+	    <result property="totalScore" column="total_score"/>
+	    <result property="lessonNum" column="lesson_num"/>
+	    <result property="sex" column="sex"/>
+	    <result property="totalCredit" column="total_credit"/>
+	    <result property="averageCredit" column="average_credit"/>
+	    <result property="ranking" column="ranking"/>
+	    <result property="english1" column="english_1"/>
+	    <result property="english2" column="english_2"/>
+	    <result property="english3" column="english_3"/>
+	    <result property="math11" column="math_1_1"/>
+	    <result property="math12" column="math_1_2"/>
+	    <result property="linearMath" column="linear_math"/>
+	    <result property="languageDesign" column="language_design"/>
+	    <result property="languageDesignTest" column="language_design_test"/>
+	    <result property="objectLanguageDesign" column="object_language_design"/>
+	    <result property="languageDesignTrain" column="language_design_train"/>
+	    <result property="digitalSystermDesign" column="digital_systerm_design"/>
+	    <result property="digitalSystermDesignTest" column="digital_systerm_design_test"/>
+	    <result property="moralAndLaw" column="moral_and_law"/>
+	    <result property="chineseHistory" column="chinese_history"/>
+	    <result property="maxTheory" column="max_theory"/>
+	    <result property="sports" column="sports"/>
+	    <result property="professionPlan" column="profession_plan"/>
+	    <result property="mindHealth" column="mind_health"/>
+	</resultMap>
+	
+	<!--根据主键获取实体-->
+	<select id="get" resultMap="beanMap">
+	  SELECT
+		<include refid="columns"/>
+	  FROM
+		student_score a
+	  WHERE 
+	     student_id = #{studentId}
+	</select>
+
+	<select id="select" resultMap="beanMap" parameterType="com.hull.entity.StudentScore">
+		SELECT
+		<include refid="columns"/>
+		FROM
+		student_score a
+		WHERE 1=1
+		<if test="studentId != null">
+			AND `student_id` = #{studentId}
+		</if>
+		<if test="studentName != null">
+			AND `student_name` like '%${studentName}%'
+		</if>
+		<if test="totalScore != null">
+			AND `total_score` &gt;= ${totalScore}
+		</if>
+			<if test="lessonNum != null">
+			AND `lesson_num` = ${lessonNum}
+		</if>
+			<if test="sex != null">
+			AND `sex` = #{sex}
+		</if>
+			<if test="totalCredit != null">
+			AND `total_credit` &gt;= ${totalCredit}
+		</if>
+			<if test="averageCredit != null">
+			AND `average_credit` &gt;= ${averageCredit}
+		</if>
+			<if test="ranking != null">
+			AND `ranking` &gt;= ${ranking}
+		</if>
+	</select>
+    
+	<!-- 新增记录 -->
+	<insert id="add" parameterType="com.hull.entity.StudentScore">
+	  INSERT INTO student_score 
+	    (
+	    `student_id`,
+	    `student_name`,
+	    `total_score`,
+	    `lesson_num`,
+	    `sex`,
+	    `total_credit`,
+	    `average_credit`,
+	    `ranking`,
+	    `english_1`,
+	    `english_2`,
+	    `english_3`,
+	    `math_1_1`,
+	    `math_1_2`,
+	    `linear_math`,
+	    `language_design`,
+	    `language_design_test`,
+	    `object_language_design`,
+	    `language_design_train`,
+	    `digital_systerm_design`,
+	    `digital_systerm_design_test`,
+	    `moral_and_law`,
+	    `chinese_history`,
+	    `max_theory`,
+	    `sports`,
+	    `profession_plan`,
+	    `mind_health`		
+	    )
+	   VALUES 
+	   (
+	    #{studentId},
+	    #{studentName},
+	    #{totalScore},
+	    #{lessonNum},
+	    #{sex},
+	    #{totalCredit},
+	    #{averageCredit},
+	    #{ranking},
+	    #{english1},
+	    #{english2},
+	    #{english3},
+	    #{math11},
+	    #{math12},
+	    #{linearMath},
+	    #{languageDesign},
+	    #{languageDesignTest},
+	    #{objectLanguageDesign},
+	    #{languageDesignTrain},
+	    #{digitalSystermDesign},
+	    #{digitalSystermDesignTest},
+	    #{moralAndLaw},
+	    #{chineseHistory},
+	    #{maxTheory},
+	    #{sports},
+	    #{professionPlan},
+	    #{mindHealth}		
+	   )
+	</insert>
+    
+    <!--根据主键删除实体-->
+    <delete id="delete">
+      DELETE FROM student_score WHERE  student_id = #{studentId}
+    </delete>
+</mapper>

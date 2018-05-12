@@ -21,6 +21,7 @@
         <module>tools</module>
         <module>collegeShop</module>
         <module>pwdMng</module>
+        <module>scoresMng</module>
     </modules>
 
 
