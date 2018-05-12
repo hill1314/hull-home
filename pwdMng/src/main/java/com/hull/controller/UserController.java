@@ -44,7 +44,13 @@ public class UserController {
         if(StringUtils.isEmpty(userInfo.getVerifyCode())){
             userInfo.setVerifyCode("qwer");
         }
-        int n = userService.add(userInfo);
+        int n = 0;
+        try{
+            n = userService.add(userInfo);
+        }catch (Exception e){
+            return RespDto.error("添加失败");
+        }
+
         if(n==0){
             return RespDto.error("添加失败");
         }
