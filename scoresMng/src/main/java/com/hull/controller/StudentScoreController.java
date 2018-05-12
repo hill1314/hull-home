@@ -1,6 +1,7 @@
 package com.hull.controller;
 
 import com.hull.common.RespDto;
+import com.hull.entity.ScoreQueryDto;
 import com.hull.entity.StudentScore;
 import com.hull.service.StudentScoreService;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,8 +25,8 @@ public class StudentScoreController {
     private StudentScoreService studentScoreService;
 
     @RequestMapping("list")
-    public RespDto<List<StudentScore>> select(@RequestBody StudentScore studentScore){
-        List<StudentScore> list = studentScoreService.select(studentScore);
+    public RespDto<List<StudentScore>> select(@RequestBody ScoreQueryDto scoreQueryDto){
+        List<StudentScore> list = studentScoreService.select(scoreQueryDto);
         return RespDto.success(list);
     }
 

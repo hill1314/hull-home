@@ -1,5 +1,6 @@
 package com.hull.mapper;
 
+import com.hull.entity.ScoreQueryDto;
 import com.hull.entity.StudentScore;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +10,6 @@ import java.util.List;
 public interface StudentScoreMapper {
 
 
-    List<StudentScore> select(StudentScore studentScore);
+    List<StudentScore> select(ScoreQueryDto scoreQueryDto);
 
 }

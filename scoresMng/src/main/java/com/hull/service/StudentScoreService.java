@@ -1,5 +1,6 @@
 package com.hull.service;
 
+import com.hull.entity.ScoreQueryDto;
 import com.hull.entity.StudentScore;
 import com.hull.mapper.StudentScoreMapper;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class StudentScoreService {
     @Resource
     private StudentScoreMapper studentScoreMapper;
 
-    public List<StudentScore> select(StudentScore studentScore){
+    public List<StudentScore> select(ScoreQueryDto studentScore){
         return studentScoreMapper.select(studentScore);
     }
 }

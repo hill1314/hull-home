@@ -71,35 +71,50 @@
 	     student_id = #{studentId}
 	</select>
 
-	<select id="select" resultMap="beanMap" parameterType="com.hull.entity.StudentScore">
+	<select id="select" resultMap="beanMap" parameterType="com.hull.entity.ScoreQueryDto">
 		SELECT
 		<include refid="columns"/>
 		FROM
 		student_score a
 		WHERE 1=1
-		<if test="studentId != null">
+		<if test="studentId != null and studentId!=''" >
 			AND `student_id` = #{studentId}
 		</if>
-		<if test="studentName != null">
+		<if test="studentName != null and studentName!=''">
 			AND `student_name` like '%${studentName}%'
 		</if>
-		<if test="totalScore != null">
-			AND `total_score` &gt;= ${totalScore}
+		<if test="totalScoreLess != null">
+			AND `total_score` &gt;= ${totalScoreLess}
 		</if>
-			<if test="lessonNum != null">
+		<if test="totalScoreMore != null">
+			AND `total_score` &lt; ${totalScoreMore}
+		</if>
+		<if test="lessonNum != null">
 			AND `lesson_num` = ${lessonNum}
 		</if>
-			<if test="sex != null">
+			<if test="sex != null and sex!=''">
 			AND `sex` = #{sex}
 		</if>
-			<if test="totalCredit != null">
-			AND `total_credit` &gt;= ${totalCredit}
+		<if test="totalCreditLess != null">
+			AND `total_credit` &gt;= ${totalCreditLess}
 		</if>
-			<if test="averageCredit != null">
-			AND `average_credit` &gt;= ${averageCredit}
+		<if test="totalCreditMore != null">
+			AND `total_credit` &lt; ${totalCreditMore}
 		</if>
-			<if test="ranking != null">
+		<if test="averageCreditLess != null">
+			AND `average_credit` &gt;= ${averageCreditLess}
+		</if>
+		<if test="averageCreditMore != null">
+			AND `average_credit` &lt; ${averageCreditMore}
+		</if>
+		<if test="ranking != null">
 			AND `ranking` &gt;= ${ranking}
+		</if>
+		<if test="orderBy != null and orderBy != ''">
+			order by ${orderBy}
+		</if>
+		<if test="orderBy == null">
+			order by student_id
 		</if>
 	</select>
     
