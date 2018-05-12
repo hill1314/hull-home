@@ -68,27 +68,23 @@
     <button class="lang-btn log-btn" onclick="addBtn()">添加</button>
 </div>
 
-<div class="form-data pos editbox  hide">
+<div class="form-data pos editbox hide">
     <span class="close">X</span>
-    <div class="formMod">
+    <div class="verify-code">
         <p class="p-input pos">
-            <label for="use_name_m">用户名/账号</label>
-            <input type="text" id="use_name_m">
+            <label for="use_code_m">请输入验证码</label>
+            <input type="text" id="use_code_m">
         </p>
-        <p class="p-input pos">
-            <label for="use_password_m">密码</label>
-            <input type="text" id="use_password_m">
-        </p>
-        <p class="p-input pos">
-            <label for="use_type_m">用户名/类型</label>
-            <input type="text" id="use_type_m">
-        </p>
-        <p class="p-input pos">
-            <label for="use_mobile_m">手机号</label>
-            <input type="text" id="use_mobile_m">
-        </p>
+        <button class="lang-btn mod-btn" onclick="checkCode()">确认</button>
     </div>
-    <button class="lang-btn mod-btn" onclick="modBtn()">保存</button>
+    <div class="formMod hide">
+        <p class="p-input pos">
+            <label for="use_password_m">请输入新密码</label>
+            <input type="text" id="use_password_m">
+            <input type="text" id="pwd_id_m" hidden>
+        </p>
+        <button class="lang-btn mod-btn" onclick="modBtn()">提交</button>
+    </div>
 </div>
 <script src="./js/jquery.js"></script>
 <script src="./js/index.js"></script>

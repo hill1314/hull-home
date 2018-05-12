@@ -84,12 +84,9 @@ function addBtn(){
 }
 
 function editinfo(id){
-    // alert(id);
     $('.editbox').removeClass('hide');
-    // $('#use_name_m').val(loginCode);
-    // $('#use_password_m').val(loginPwd);
-    // $('#use_type_m').val(type);
-    // $('#use_mobile_m').val(mobile);
+    $('#pwd_id_m').val(id);
+
 }
 
 function delInfo(id){
@@ -118,13 +115,12 @@ function delInfo(id){
 }
 
 function modBtn(){
-    var use_name = $.trim($('#use_name_m').val());
+    var pwd_id = $.trim($('#pwd_id_m').val());
     var use_password = $.trim($('#use_password_m').val());
-    var use_type = $.trim($('#use_type_m').val());
-    var use_mobile = $.trim($('#use_mobile_m').val());
     var userId = sessionStorage.getItem("userId");
 
-    var ldata = {"loginCode":use_name,"loginPwd":use_password,"type":use_type,"mobile":use_mobile,"userId":userId}
+    // var ldata = {"loginCode":use_name,"loginPwd":use_password,"type":use_type,"mobile":use_mobile,"userId":userId}
+    var ldata = {"loginPwd":use_password,"id":pwd_id,"userId":userId}
     $.ajax({
         url: '/pwd/modify/',
         type: 'POST',
@@ -164,7 +160,7 @@ function initlists(data) {
             '<td>'+ele.mobile+'</td>' +
             '<td class="user_edit" data-index="'+i+'"' +
             '<a href="" onclick="editinfo('
-                +ele.id+
+            +ele.id+
             ')">编辑</a>' + '<br/>'+
             '<a href="" onclick="delInfo('+ele.id+')">删除</a>' +
             '</td>'+
@@ -203,7 +199,18 @@ function queryPwd() {
         }
     });
 }
+//验证码校验
+function checkCode () {
+    var code = "qwer";
+    var newcode = $.trim($('#use_code_m').val());
+    if(code == newcode) {
+        $('.verify-code').addClass('hide');
+        $('.formMod').removeClass('hide');
+    }else {
+        alert('验证码错误')
+    }
+}
 
-function loginOut() {
+function loginOut () {
     sessionStorage.clear();
 }
