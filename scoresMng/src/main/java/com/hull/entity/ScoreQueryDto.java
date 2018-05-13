@@ -49,5 +49,5 @@ public class ScoreQueryDto {
     /**
      * 排序字段
      */
-    private Integer orderBy;
+    private String orderBy;
 }
