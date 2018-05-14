@@ -23,4 +23,10 @@ public class StudentScoreService {
     public List<StudentScore> select(ScoreQueryDto studentScore){
         return studentScoreMapper.select(studentScore);
     }
+
+    public int add(StudentScore studentScore){
+        return studentScoreMapper.add(studentScore);
+    }
+
+
 }

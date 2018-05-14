@@ -30,4 +30,13 @@ public class StudentScoreController {
         return RespDto.success(list);
     }
 
+
+    @RequestMapping("add")
+    public RespDto<StudentScore> add(@RequestBody StudentScore studentScore){
+        int n = studentScoreService.add(studentScore);
+        if(n==0){
+            RespDto.error("添加失败");
+        }
+        return RespDto.success(studentScore);
+    }
 }

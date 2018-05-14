@@ -12,4 +12,6 @@ public interface StudentScoreMapper {
 
     List<StudentScore> select(ScoreQueryDto scoreQueryDto);
 
+    int add(StudentScore studentScore);
+
 }
