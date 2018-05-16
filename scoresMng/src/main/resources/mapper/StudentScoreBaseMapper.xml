@@ -112,6 +112,9 @@
 		</if>
 		<if test="orderBy != null and orderBy != ''">
 			order by ${orderBy}
+			<if test="orderDir =='2' ">
+				desc
+			</if>
 		</if>
 		<if test="orderBy == null">
 			order by student_id

@@ -50,4 +50,9 @@ public class ScoreQueryDto {
      * 排序字段
      */
     private String orderBy;
+
+    /**
+     * 排序方向 1-正序  2-倒序
+     */
+    private String orderDir;
 }
