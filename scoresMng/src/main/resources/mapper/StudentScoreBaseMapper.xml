@@ -182,7 +182,90 @@
 	    #{mindHealth}		
 	   )
 	</insert>
-    
+
+	<!--更新实体信息，null值字段不更新-->
+	<update id="updateIgnoreNull" parameterType="com.hull.entity.StudentScore">
+		UPDATE student_score
+		<set>
+			<if test="studentName != null">
+				`student_name` = #{studentName},
+			</if>
+			<if test="totalScore != null">
+				`total_score` = #{totalScore},
+			</if>
+			<if test="lessonNum != null">
+				`lesson_num` = #{lessonNum},
+			</if>
+			<if test="sex != null">
+				`sex` = #{sex},
+			</if>
+			<if test="totalCredit != null">
+				`total_credit` = #{totalCredit},
+			</if>
+			<if test="averageCredit != null">
+				`average_credit` = #{averageCredit},
+			</if>
+			<if test="ranking != null">
+				`ranking` = #{ranking},
+			</if>
+			<if test="english1 != null">
+				`english_1` = #{english1},
+			</if>
+			<if test="english2 != null">
+				`english_2` = #{english2},
+			</if>
+			<if test="english3 != null">
+				`english_3` = #{english3},
+			</if>
+			<if test="math11 != null">
+				`math_1_1` = #{math11},
+			</if>
+			<if test="math12 != null">
+				`math_1_2` = #{math12},
+			</if>
+			<if test="linearMath != null">
+				`linear_math` = #{linearMath},
+			</if>
+			<if test="languageDesign != null">
+				`language_design` = #{languageDesign},
+			</if>
+			<if test="languageDesignTest != null">
+				`language_design_test` = #{languageDesignTest},
+			</if>
+			<if test="objectLanguageDesign != null">
+				`object_language_design` = #{objectLanguageDesign},
+			</if>
+			<if test="languageDesignTrain != null">
+				`language_design_train` = #{languageDesignTrain},
+			</if>
+			<if test="digitalSystermDesign != null">
+				`digital_systerm_design` = #{digitalSystermDesign},
+			</if>
+			<if test="digitalSystermDesignTest != null">
+				`digital_systerm_design_test` = #{digitalSystermDesignTest},
+			</if>
+			<if test="moralAndLaw != null">
+				`moral_and_law` = #{moralAndLaw},
+			</if>
+			<if test="chineseHistory != null">
+				`chinese_history` = #{chineseHistory},
+			</if>
+			<if test="maxTheory != null">
+				`max_theory` = #{maxTheory},
+			</if>
+			<if test="sports != null">
+				`sports` = #{sports},
+			</if>
+			<if test="professionPlan != null">
+				`profession_plan` = #{professionPlan},
+			</if>
+			<if test="mindHealth != null">
+				`mind_health` = #{mindHealth},
+			</if>
+		</set>
+		WHERE   student_id = #{studentId}
+	</update>
+
     <!--根据主键删除实体-->
     <delete id="delete">
       DELETE FROM student_score WHERE  student_id = #{studentId}
