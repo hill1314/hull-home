@@ -16,5 +16,7 @@ public interface StudentScoreMapper {
 
     StudentScore get(String studentId);
 
+    int delete(String studentId);
+
     int updateIgnoreNull(StudentScore studentScore);
 }

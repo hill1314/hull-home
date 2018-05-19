@@ -40,8 +40,15 @@ public class StudentScoreService {
         }else {
             return studentScoreMapper.updateIgnoreNull(studentScore);
         }
-
     }
 
+
+    public int delete(String studentId) {
+        StudentScore score = studentScoreMapper.get(studentId);
+        if(score!=null){
+            return studentScoreMapper.delete(studentId);
+        }
+        return 1;
+    }
 
 }
