@@ -112,7 +112,7 @@
 		</if>
 		<if test="orderBy != null and orderBy != ''">
 			order by ${orderBy}
-			<if test="orderDir =='2' ">
+			<if test="orderDir !='1' ">
 				desc
 			</if>
 		</if>
