@@ -3,6 +3,7 @@ package com.hull.controller;
 import com.hull.entity.RespDto;
 import com.hull.entity.UserInfo;
 import com.hull.service.UserService;
+import io.swagger.annotations.Api;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import java.util.List;
  * @create 2018-05-05 下午2:31
  **/
 
+@Api(value = "API - UserController", description = "用户管理")
 @RestController
 @RequestMapping("user")
 public class UserController {

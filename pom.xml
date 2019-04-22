@@ -22,6 +22,8 @@
         <module>collegeShop</module>
         <module>pwdMng</module>
         <module>scoresMng</module>
+        <module>esTest</module>
+        <module>mongdbTest</module>
     </modules>
 
 
