@@ -20,3 +20,17 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+
+/target/
+/bin/
+/src/main/webapp/WEB-INF/classes/
+/src/main/webapp/WEB-INF/lib/
+/.settings/
+/.classpath
+/.project
+.DS_Store
+
+# IDEA
+.idea/
+*.iml
