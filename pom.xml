@@ -24,6 +24,8 @@
         <module>scoresMng</module>
         <module>esTest</module>
         <module>mongdbTest</module>
+        <module>nettyTest</module>
+        <module>myActivity</module>
     </modules>
 
 
