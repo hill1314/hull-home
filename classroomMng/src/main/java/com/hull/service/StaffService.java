@@ -1,11 +1,10 @@
 package com.hull.service;
 
 import com.hull.annotations.LogAnnotation;
-import com.hull.dto.RespDto;
+import com.hull.aop.SimpleCache;
 import com.hull.entity.StaffInfo;
 import com.hull.mapper.StaffInfoMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -22,16 +21,18 @@ public class StaffService {
     @Resource
     private StaffInfoMapper staffInfoMapper;
 
-    @LogAnnotation(type = 1,info = "getByNameAndPwd")
+//    @LogAnnotation(type = 1,info = "getByNameAndPwd")
+    @SimpleCache(key = "{name}",expireTime = 100)
     public StaffInfo getByNameAndPwd(String name, String pwd) {
         StaffInfo staffInfo = new StaffInfo();
         staffInfo.setName(name);
         staffInfo.setPassword(pwd);
-        List<StaffInfo> staffInfoList = staffInfoMapper.select(staffInfo);
-        if(CollectionUtils.isEmpty(staffInfoList)){
-            return null;
-        }
-        return staffInfoList.get(0);
+//        List<StaffInfo> staffInfoList = staffInfoMapper.select(staffInfo);
+//        if(CollectionUtils.isEmpty(staffInfoList)){
+//            return null;
+//        }
+//        return staffInfoList.get(0);
+        return staffInfo;
     }
 
     public int add(StaffInfo staffInfo) {
